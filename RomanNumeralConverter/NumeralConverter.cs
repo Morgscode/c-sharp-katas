@@ -10,7 +10,26 @@
         {
             {1, "I"},
             {5, "V"},
-            {10, "X"}
+            {10, "X"},
+            {50, "L"},
+            {100, "C"},
+            {500, "D"},
+            {1000, "M"}
+        };
+
+        public static readonly Dictionary<int, string> SubtractionNumeralMap = new Dictionary<int, string>
+        {
+            {1, "I"},
+            {4, "IV"},
+            {5, "V"},
+            {9, "IX"},
+            {10, "X"},
+            {40, "XL"},
+            {50, "L"},
+            {90, "XC"},
+            {100, "C"},
+            {500, "D"},
+            {1000, "M"}
         };
 
         public static string Convert(int input)
@@ -29,35 +48,27 @@
                 return value;
             }
 
-            // might need to lose this - handle the 'IIII' problem 
-            if (NumeralMap.TryGetValue(input + 1, out string offsetValue))
+            // check for the input as a key inside our subtraction dict
+            if (SubtractionNumeralMap.TryGetValue(input, out string subtractionValue))
             {
-                return "I" + offsetValue;
+                return subtractionValue;
             }
 
-            var result = "";
+            var keys = NumeralMap.Keys.OrderByDescending(k => k).ToList();
 
-            var keys = NumeralMap.Keys.Skip(1).ToList();
-            var values = NumeralMap.Values.Skip(1).ToList();
-
-            for (int i = 0; i < keys.Count; i++)
+            foreach (var key in keys)
             {
-                // Console.WriteLine($"Key: {keys[i]}, Value: {values[i]}");
-                if (input < keys[i] || i == keys.Count - 1)
+                if (input >= key)
                 {
-                    var numeralBase = values[i];
-                    var remainder = input % 5;
-                    Console.WriteLine($"Target - Loop Index: {i}, Input: {input}, Key: {keys[i]}, Value: {values[i]}, Remainder: {remainder}");
-                    if (remainder > 0)
-                    {
-                        var ending = ICharacterMultiples(remainder);
-                        result = numeralBase += ending;
-                    }
-                }
+                    var numeralBase = NumeralMap[key];
+                    var remainder = input - key;
 
+                    // If remainder exists, append the Roman numeral for the remainder to the base numeral
+                    return remainder > 0 ? numeralBase + Convert(remainder) : numeralBase;
+                }
             }
 
-            return result;
+            return "";
         }
 
         public static string ICharacterMultiples(int input)
