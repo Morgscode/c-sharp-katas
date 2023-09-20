@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{EE2BE7CA-4D04-4985-BD5C-8E9E4E494236}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NumeralConverter.cs">
+    <Files>
+      <File FileName="NumeralConverter.cs" Line="56" Column="18" />
+      <File FileName="../RomanNumeralConverter.Tests/UnitTest1.cs" Line="90" Column="6" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="RomanNumeralConverter" expanded="True">
+            <Node name="RomanNumeralConverter" expanded="True">
+              <Node name="NumeralConverter.cs" selected="True" />
+            </Node>
+            <Node name="RomanNumeralConverter.Tests" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.RomanNumeralConverter PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
