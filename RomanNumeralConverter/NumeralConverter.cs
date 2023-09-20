@@ -53,7 +53,7 @@
                     Console.WriteLine($"Target - Input: {input}, Key: {key}, NumeralBase: {NumeralMap[key]}, Remainder: {remainder}");
 
                     // If remainder exists, append the Roman numeral for the remainder to the base numeral
-                    return remainder > 0 ? NumeralMap[key] + Convert(remainder) : NumeralMap[key]; ;
+                    return remainder > 0 ? NumeralMap[key] + Convert(remainder) : NumeralMap[key];
                 }
             }
 
