@@ -26,6 +26,7 @@ public class WithdrawTests
     [InlineData(17)]
     [InlineData(18)]
     [InlineData(19)]
+    [InlineData(11111)]
     public void InvalidInputTheory(int input)
     {
         var exception = Assert.Throws<ArgumentException>(() => AtmMachine.Withdraw(input));
@@ -37,10 +38,22 @@ public class WithdrawTests
     [InlineData(10)]
     [InlineData(20)]
     [InlineData(50)]
-    public void SimpleNoteTheory(int input)
+    public void SingleNoteTheory(int input)
     {
-        var expected = new Dictionary<int, int> { { 1, input } };
+        var expected = new List<KeyValuePair<int, int>> { new KeyValuePair<int, int>(1, input) };
         var output = AtmMachine.Withdraw(input);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesFifteenInput()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+        {
+            new KeyValuePair<int, int>(1, 5 ),
+            new KeyValuePair<int, int>(1, 10 )
+        };
+        var output = AtmMachine.Withdraw(15);
         Assert.Equal(expected, output);
     }
 }
