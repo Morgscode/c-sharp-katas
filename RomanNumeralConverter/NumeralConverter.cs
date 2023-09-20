@@ -58,13 +58,17 @@
 
             foreach (var key in keys)
             {
+
+                Console.WriteLine($"Searching - Input: {input}, Key: {key}, NumeralBase: {NumeralMap[key]}");
+
                 if (input >= key)
-                {
-                    var numeralBase = NumeralMap[key];
+                { 
                     var remainder = input - key;
 
+                    Console.WriteLine($"Target - Input: {input}, Key: {key}, NumeralBase: {NumeralMap[key]}, Remainder: {remainder}");
+
                     // If remainder exists, append the Roman numeral for the remainder to the base numeral
-                    return remainder > 0 ? numeralBase + Convert(remainder) : numeralBase;
+                    return remainder > 0 ? NumeralMap[key] + Convert(remainder) : NumeralMap[key]; ;
                 }
             }
 
