@@ -9,17 +9,6 @@
         public static readonly Dictionary<int, string> NumeralMap = new Dictionary<int, string>
         {
             {1, "I"},
-            {5, "V"},
-            {10, "X"},
-            {50, "L"},
-            {100, "C"},
-            {500, "D"},
-            {1000, "M"}
-        };
-
-        public static readonly Dictionary<int, string> SubtractionNumeralMap = new Dictionary<int, string>
-        {
-            {1, "I"},
             {4, "IV"},
             {5, "V"},
             {9, "IX"},
@@ -28,7 +17,9 @@
             {50, "L"},
             {90, "XC"},
             {100, "C"},
+            {400, "CD" },
             {500, "D"},
+            {900, "CM" },
             {1000, "M"}
         };
 
@@ -46,12 +37,6 @@
             if (NumeralMap.TryGetValue(input, out string value))
             {
                 return value;
-            }
-
-            // check for the input as a key inside our subtraction dict
-            if (SubtractionNumeralMap.TryGetValue(input, out string subtractionValue))
-            {
-                return subtractionValue;
             }
 
             var keys = NumeralMap.Keys.OrderByDescending(k => k).ToList();
