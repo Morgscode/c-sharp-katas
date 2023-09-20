@@ -27,12 +27,6 @@
         {
             if (input == 0) return "";
 
-            // tiny perf boost, if it's less than 4 we don't need to use memory looking up the dict
-            if (input < 4)
-            {
-                return ICharacterMultiples(input);
-            }
-
             // check for the input as a key inside our dict
             if (NumeralMap.TryGetValue(input, out string value))
             {
@@ -52,18 +46,12 @@
 
                     Console.WriteLine($"Target - Input: {input}, Key: {key}, NumeralBase: {NumeralMap[key]}, Remainder: {remainder}");
 
-                    // If remainder exists, append the Roman numeral for the remainder to the base numeral
+                    // If remainder exists, Recursively convert and append the Roman numeral for the remainder to the base numeral
                     return remainder > 0 ? NumeralMap[key] + Convert(remainder) : NumeralMap[key];
                 }
             }
 
             return "";
-        }
-
-        public static string ICharacterMultiples(int input)
-        {
-            if (input < 0 || input > 3) throw new ArgumentException("Invalid Input: " + input);
-            return new string('I', input);
         }
     }
 }
