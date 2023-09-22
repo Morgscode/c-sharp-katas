@@ -3,18 +3,10 @@
 	public class AtmMachine
 	{
 
-		private List<KeyValuePair<int, int>> NoteInventory;
+		private Dictionary<int, int> NoteInventory;
 		private int TotalAvailableCash = 0;
 
-        public static readonly List<int> Notes = new List<int>
-		{
-			5,
-			10,
-			20,
-			50
-		};
-
-		public AtmMachine(List<KeyValuePair<int, int>> inventory)
+		public AtmMachine(Dictionary<int, int> inventory)
 		{
 			NoteInventory = inventory ?? throw new ArgumentNullException(nameof(inventory));
 
@@ -25,41 +17,47 @@
 			}
 		}
 
-		public List<KeyValuePair<int, int>> Withdraw(int amount)
+		public Dictionary<int, int> Withdraw(int amount)
 		{
-            if (amount <= 0)
-			{
-				throw new ArgumentException("Invalid Input - Amount must be greater than 0");
-            }
+            if (amount <= 0) throw new ArgumentException("Invalid Input - Amount must be greater than 0");
 
-			if (amount % 5 != 0)
-			{
-                throw new ArgumentException("Invalid Input - Amount cannot be dispensed");
-            }
+			if (amount % 5 != 0) throw new ArgumentException("Invalid Input - Amount cannot be dispensed");
 
             if (TotalAvailableCash == 0) throw new Exception("There is no cash available at this atm");
 
-            return GetNotes(new List<KeyValuePair<int, int>>{}, amount);
+			if (amount > TotalAvailableCash) throw new ArgumentException("That amount is not available to dispense");
+
+            return GetNotes(amount);
 		}
 
-		private List<KeyValuePair<int, int>> GetNotes(List<KeyValuePair<int, int>> input, int amount)
+		private Dictionary<int, int> GetNotes(int amount)
 		{
-            List<int> notes = new List<int>(Notes);
-            notes.Reverse();
 
-            foreach (var note in notes)
+			var output = new Dictionary<int, int> { };
+
+            foreach (var note in NoteInventory)
             {
                 if (amount == 0) break;
 
-                int count = amount / note;
+				// if we don't  have any of the notes left, continue
+				if (note.Value == 0) continue;
+
+				// calc how many of this note to dispense
+                int count = amount / note.Key;
                 if (count > 0)
                 {
-                    input.Add(new KeyValuePair<int, int>(count, note));
-                    amount -= count * note;
+					// add the note and count kvp to the output
+                    output.Add(note.Key, count);
+                    // update the amount
+                    amount -= count * note.Key;
+					// subtract from total cash available
+					TotalAvailableCash -= amount;
+					// update inventory
+					NoteInventory[note.Key] -= count;
                 }
             }
 
-            return input;
+            return output;
         }
 
     }
