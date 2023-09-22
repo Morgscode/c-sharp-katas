@@ -37,7 +37,6 @@ public class AtmMachine
 
     private Dictionary<int, int> GetNotes(int amount)
     {
-
         var output = new Dictionary<int, int> { };
 
         foreach (var note in NoteInventory)
@@ -53,12 +52,12 @@ public class AtmMachine
             {
                 // add the quantity of notes to the output
                 output.Add(note.Key, count);
-                // update the amount
-                amount -= count * note.Key;
                 // subtract from total cash available
-                TotalAvailableCash -= amount;
+                TotalAvailableCash -= note.Key * count;
                 // update inventory count of note
                 NoteInventory[note.Key] -= count;
+                // update the amount for next iteration of loop
+                amount -= note.Key * count;
             }
         }
 
