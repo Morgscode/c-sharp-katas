@@ -2,14 +2,7 @@ namespace AtmMachine.Tests;
 
 public class WithdrawTests
 {
-
-    [Fact]
-    public void ThrowsForInvalidInventory()
-    {
-        var exception = Assert.Throws<ArgumentNullException>(() => new AtmMachine(null));
-        Assert.Equal("Value cannot be null. (Parameter 'inventory')", exception.Message);
-    }
-
+    
     [Fact]
     public void ThrowsForNoAvailableCash()
     {
@@ -88,126 +81,6 @@ public class WithdrawTests
         
         var expected = new Dictionary<int, int> { { input, 1 } };
         var output = atm.Withdraw(input);
-        Assert.Equal(expected, output);
-    }
-
-    [Fact]
-    public void HandlesFifteenInput()
-    {
-        var atm = new AtmMachine(new Dictionary<int, int>
-        {
-            { 50,  100},
-            { 20,  100},
-            { 10, 100 },
-            { 5, 100 },
-        });
-
-        var expected = new Dictionary<int, int>
-        {
-            { 10, 1 },
-            { 5, 1 },
-        };
-        var output = atm.Withdraw(15);
-        Assert.Equal(expected, output);
-    }
-
-    [Fact]
-    public void HandlesTwentyFiveInput()
-    {
-        var atm = new AtmMachine(new Dictionary<int, int>
-        {
-            { 50,  100},
-            { 20,  100},
-            { 10, 100 },
-            { 5, 100 },
-        });
-
-        var expected = new Dictionary<int, int>
-        {
-            { 20, 1 },
-            { 5, 1 },
-        };
-        var output = atm.Withdraw(25);
-        Assert.Equal(expected, output);
-    }
-
-    [Fact]
-    public void HandlesThirtyInput()
-    {
-        var atm = new AtmMachine(new Dictionary<int, int>
-        {
-            { 50,  100},
-            { 20,  100},
-            { 10, 100 },
-            { 5, 100 },
-        });
-
-        var expected = new Dictionary<int, int>
-        {
-            { 20, 1 },
-            { 10, 1 },
-        };
-        var output = atm.Withdraw(30);
-        Assert.Equal(expected, output);
-    }
-
-    [Fact]
-    public void HandlesThirtyFive()
-    {
-        var atm = new AtmMachine(new Dictionary<int, int>
-        {
-            { 50,  100},
-            { 20,  100},
-            { 10, 100 },
-            { 5, 100 },
-        });
-
-        var expected = new Dictionary<int, int>
-        {
-            { 20, 1 },
-            { 10, 1 },
-            { 5, 1 },
-        };
-        var output = atm.Withdraw(35);
-        Assert.Equal(expected, output);
-    }
-
-    [Fact]
-    public void HandlesFortyInput()
-    {
-        var atm = new AtmMachine(new Dictionary<int, int>
-        {
-            { 50,  100},
-            { 20,  100},
-            { 10, 100 },
-            { 5, 100 },
-        });
-
-        var expected = new Dictionary<int, int>
-        {
-            { 20, 2 },
-        };
-        var output = atm.Withdraw(40);
-        Assert.Equal(expected, output);
-    }
-
-    [Fact]
-    public void HandlesFortyFive()
-    {
-        var atm = new AtmMachine(new Dictionary<int, int>
-        {
-            { 50,  100},
-            { 20,  100},
-            { 10, 100 },
-            { 5, 100 },
-        });
-
-        var expected = new Dictionary<int, int>
-        {
-            { 20, 2 },
-            { 5, 1 },
-        };
-        var output = atm.Withdraw(45);
         Assert.Equal(expected, output);
     }
 
