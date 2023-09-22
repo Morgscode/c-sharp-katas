@@ -12,7 +12,7 @@
 
 		public static List<KeyValuePair<int, int>> Withdraw(int amount)
 		{
-			if (amount == 0)
+			if (amount <= 0)
 			{
 				throw new ArgumentException("Invalid Input - Amount must be greater than 0");
             }
@@ -22,11 +22,7 @@
                 throw new ArgumentException("Invalid Input - Amount cannot be dispensed");
             }
 
-			return GetNotes(
-                new List<KeyValuePair<int, int>>
-                {
-
-                }, amount);
+			return GetNotes(new List<KeyValuePair<int, int>>{}, amount);
 		}
 
 		public static List<KeyValuePair<int, int>> GetNotes(List<KeyValuePair<int, int>> input, int amount)

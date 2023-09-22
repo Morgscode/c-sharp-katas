@@ -47,6 +47,12 @@ public class WithdrawTests
     }
 
     [Fact]
+    public void ThrowsForNegativeAmount()
+    {
+        Assert.Throws<ArgumentException>(() => AtmMachine.Withdraw(-5));
+    }
+
+    [Fact]
     public void HandlesFifteenInput()
     {
         var expected = new List<KeyValuePair<int, int>>
@@ -127,6 +133,32 @@ public class WithdrawTests
             new KeyValuePair<int, int>(1, 5 ),
         };
         var output = AtmMachine.Withdraw(55);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesMixedNotes()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+    {
+        new KeyValuePair<int, int>(2, 50),
+        new KeyValuePair<int, int>(1, 20),
+        new KeyValuePair<int, int>(1, 5),
+    };
+        var output = AtmMachine.Withdraw(125);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesRandomValue()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+    {
+        new KeyValuePair<int, int>(4, 50),
+        new KeyValuePair<int, int>(1, 10),
+        new KeyValuePair<int, int>(1, 5),
+    };
+        var output = AtmMachine.Withdraw(215);
         Assert.Equal(expected, output);
     }
 }
