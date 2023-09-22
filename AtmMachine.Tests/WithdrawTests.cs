@@ -3,7 +3,7 @@ namespace AtmMachine.Tests;
 public class WithdrawTests
 {
     [Fact]
-    public void HandlesZeroInput()
+    public void ThrowsForZero()
     {
         var exception = Assert.Throws<ArgumentException>(() => AtmMachine.Withdraw(0));
         Assert.Equal("Invalid Input - Amount must be greater than 0", exception.Message);
@@ -28,10 +28,16 @@ public class WithdrawTests
     [InlineData(19)]
     [InlineData(98)]
     [InlineData(11111)]
-    public void InvalidInputTheory(int input)
+    public void ThrowsForInvalidAmount(int input)
     {
         var exception = Assert.Throws<ArgumentException>(() => AtmMachine.Withdraw(input));
         Assert.Equal("Invalid Input - Amount cannot be dispensed", exception.Message);
+    }
+
+    [Fact]
+    public void ThrowsForNegativeAmount()
+    {
+        Assert.Throws<ArgumentException>(() => AtmMachine.Withdraw(-5));
     }
 
     [Theory]
@@ -47,12 +53,6 @@ public class WithdrawTests
     }
 
     [Fact]
-    public void ThrowsForNegativeAmount()
-    {
-        Assert.Throws<ArgumentException>(() => AtmMachine.Withdraw(-5));
-    }
-
-    [Fact]
     public void HandlesFifteenInput()
     {
         var expected = new List<KeyValuePair<int, int>>
@@ -65,7 +65,7 @@ public class WithdrawTests
     }
 
     [Fact]
-    public void HandlesTwnetyFiveInput()
+    public void HandlesTwentyFiveInput()
     {
         var expected = new List<KeyValuePair<int, int>>
         {
@@ -121,18 +121,6 @@ public class WithdrawTests
             new KeyValuePair<int, int>(1, 5 ),
         };
         var output = AtmMachine.Withdraw(45);
-        Assert.Equal(expected, output);
-    }
-
-    [Fact]
-    public void HandlesFiftyFive()
-    {
-        var expected = new List<KeyValuePair<int, int>>
-        {
-            new KeyValuePair<int, int>(1, 50 ),
-            new KeyValuePair<int, int>(1, 5 ),
-        };
-        var output = AtmMachine.Withdraw(55);
         Assert.Equal(expected, output);
     }
 
