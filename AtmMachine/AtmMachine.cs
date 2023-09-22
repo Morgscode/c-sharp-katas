@@ -2,7 +2,11 @@
 {
 	public class AtmMachine
 	{
-		public static readonly List<int> Notes = new List<int>
+
+		private List<KeyValuePair<int, int>> NoteInventory;
+		private int TotalAvailableCash = 0;
+
+        public static readonly List<int> Notes = new List<int>
 		{
 			5,
 			10,
@@ -10,9 +14,20 @@
 			50
 		};
 
-		public static List<KeyValuePair<int, int>> Withdraw(int amount)
+		public AtmMachine(List<KeyValuePair<int, int>> inventory)
 		{
-			if (amount <= 0)
+			NoteInventory = inventory ?? throw new ArgumentNullException(nameof(inventory));
+
+			foreach(var item in inventory)
+			{
+				int itemTotal = item.Value * item.Key;
+                TotalAvailableCash += itemTotal;
+			}
+		}
+
+		public List<KeyValuePair<int, int>> Withdraw(int amount)
+		{
+            if (amount <= 0)
 			{
 				throw new ArgumentException("Invalid Input - Amount must be greater than 0");
             }
@@ -22,10 +37,12 @@
                 throw new ArgumentException("Invalid Input - Amount cannot be dispensed");
             }
 
-			return GetNotes(new List<KeyValuePair<int, int>>{}, amount);
+            if (TotalAvailableCash == 0) throw new Exception("There is no cash available at this atm");
+
+            return GetNotes(new List<KeyValuePair<int, int>>{}, amount);
 		}
 
-		public static List<KeyValuePair<int, int>> GetNotes(List<KeyValuePair<int, int>> input, int amount)
+		private List<KeyValuePair<int, int>> GetNotes(List<KeyValuePair<int, int>> input, int amount)
 		{
             List<int> notes = new List<int>(Notes);
             notes.Reverse();
