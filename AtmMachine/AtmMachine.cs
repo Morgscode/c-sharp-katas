@@ -22,47 +22,31 @@
                 throw new ArgumentException("Invalid Input - Amount cannot be dispensed");
             }
 
-            var result = new List<KeyValuePair<int, int>>
-            {
+			return GetNotes(
+                new List<KeyValuePair<int, int>>
+                {
 
-            };
-
-			if (Notes.Contains(amount))
-			{
-                result.Add(new KeyValuePair<int, int>(1, amount) );
-				return result;
-            }
-
-			result = RecursiveGetNote(result, amount);
-
-            return result;
+                }, amount);
 		}
 
-		public static List<KeyValuePair<int, int>> RecursiveGetNote(List<KeyValuePair<int, int>> input, int amount)
+		public static List<KeyValuePair<int, int>> GetNotes(List<KeyValuePair<int, int>> input, int amount)
 		{
-			// loop over reversed notes
-			var notes = new List<int>(Notes);
-			notes.Reverse();
-
-			Console.WriteLine($"");
+            List<int> notes = new List<int>(Notes);
+            notes.Reverse();
 
             foreach (var note in notes)
-			{
-				if (amount > note)
-				{
-                    // if amount > note => add note to result
-                    input.Add(new KeyValuePair<int, int> (1, note));
-                    // subtract note from amount => get remainder
-                    var remainder = amount - note;
-					if (remainder > 0)
-					{
-                        // same process on remainder
-                        RecursiveGetNote(input, remainder);
-                    }
-				}
-			}
+            {
+                if (amount == 0) break;
 
-			return input;
+                int count = amount / note;
+                if (count > 0)
+                {
+                    input.Add(new KeyValuePair<int, int>(count, note));
+                    amount -= count * note;
+                }
+            }
+
+            return input;
         }
 
     }

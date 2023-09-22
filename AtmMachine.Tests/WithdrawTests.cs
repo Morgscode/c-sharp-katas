@@ -26,6 +26,7 @@ public class WithdrawTests
     [InlineData(17)]
     [InlineData(18)]
     [InlineData(19)]
+    [InlineData(98)]
     [InlineData(11111)]
     public void InvalidInputTheory(int input)
     {
@@ -50,10 +51,82 @@ public class WithdrawTests
     {
         var expected = new List<KeyValuePair<int, int>>
         {
+            new KeyValuePair<int, int>(1, 10 ),
             new KeyValuePair<int, int>(1, 5 ),
-            new KeyValuePair<int, int>(1, 10 )
         };
         var output = AtmMachine.Withdraw(15);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesTwnetyFiveInput()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+        {
+            new KeyValuePair<int, int>(1, 20 ),
+            new KeyValuePair<int, int>(1, 5 ),
+        };
+        var output = AtmMachine.Withdraw(25);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesThirtyInput()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+        {
+            new KeyValuePair<int, int>(1, 20 ),
+            new KeyValuePair<int, int>(1, 10 ),
+        };
+        var output = AtmMachine.Withdraw(30);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesThirtyFive()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+        {
+            new KeyValuePair<int, int>(1, 20 ),
+            new KeyValuePair<int, int>(1, 10 ),
+            new KeyValuePair<int, int>(1, 5 ),
+        };
+        var output = AtmMachine.Withdraw(35);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesFortyInput()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+        {
+            new KeyValuePair<int, int>(2, 20 ),
+        };
+        var output = AtmMachine.Withdraw(40);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesFortyFive()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+        {
+            new KeyValuePair<int, int>(2, 20 ),
+            new KeyValuePair<int, int>(1, 5 ),
+        };
+        var output = AtmMachine.Withdraw(45);
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void HandlesFiftyFive()
+    {
+        var expected = new List<KeyValuePair<int, int>>
+        {
+            new KeyValuePair<int, int>(1, 50 ),
+            new KeyValuePair<int, int>(1, 5 ),
+        };
+        var output = AtmMachine.Withdraw(55);
         Assert.Equal(expected, output);
     }
 }
