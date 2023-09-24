@@ -9,24 +9,24 @@ Given the children of the world have varying screen sizes, Santa has tasked you 
 Output
 For example a tree with a height of 2 looks like this:
 
-`
+
   x
  xxx 
   |
-`
+
 
 And a tree with a height of 3 looks like this:
 
-`
+
   x
  xxx
 xxxxx 
   |
-`
+
 
 And a tree of height 10:
 
-`
+
          x
         xxx
        xxxxx
@@ -39,4 +39,3 @@ And a tree of height 10:
 xxxxxxxxxxxxxxxxxxx
          |
 
-`
