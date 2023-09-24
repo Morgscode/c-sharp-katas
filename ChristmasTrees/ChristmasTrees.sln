@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChristmasTrees", "ChristmasTrees.csproj", "{38195272-E64D-4ED2-8445-1DF747550575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChristmasTree.Tests", "..\ChristmasTree.Tests\ChristmasTree.Tests.csproj", "{AAA17F35-C4AD-4725-8F8C-523F1AB2D703}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38195272-E64D-4ED2-8445-1DF747550575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38195272-E64D-4ED2-8445-1DF747550575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38195272-E64D-4ED2-8445-1DF747550575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38195272-E64D-4ED2-8445-1DF747550575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAA17F35-C4AD-4725-8F8C-523F1AB2D703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAA17F35-C4AD-4725-8F8C-523F1AB2D703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAA17F35-C4AD-4725-8F8C-523F1AB2D703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAA17F35-C4AD-4725-8F8C-523F1AB2D703}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A79BC99F-6353-439B-94C6-EE98F8995FD0}
+	EndGlobalSection
+EndGlobal
