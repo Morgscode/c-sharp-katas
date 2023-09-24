@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using ChristmasTrees;
+﻿using ChristmasTrees;
+
 namespace ChristmasTree.Tests;
 
 public class ChristmasTreeTests
