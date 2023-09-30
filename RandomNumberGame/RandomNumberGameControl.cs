@@ -11,7 +11,7 @@ public class RandomNumberGameControl
         _randomNumber = new RandomNumber();
     }
 
-    public string Hint(int guess)
+    private string Hint(int guess)
     {
         if (guess < _randomNumber.GetNumberToGuess())
         {
@@ -29,10 +29,13 @@ public class RandomNumberGameControl
 
     public string Guess(int guess)
     {
+        if (attempts == limit) throw new Exception("You are out of guesses");
+
         if (_randomNumber.IsNumberToGuess(guess))
         {
             return "Correct!";
         }
+        attempts++;
 
         return Hint(guess);
     }
