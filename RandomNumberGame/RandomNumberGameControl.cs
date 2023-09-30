@@ -2,9 +2,9 @@
 
 public class RandomNumberGameControl
 {
-    private int limit = 3;
+    private readonly int limit = 3;
     private int attempts = 0;
-    private RandomNumber _randomNumber;
+    private readonly RandomNumber _randomNumber;
 
     public RandomNumberGameControl()
     {
@@ -13,11 +13,11 @@ public class RandomNumberGameControl
 
     private string Hint(int guess)
     {
-        if (guess < _randomNumber.GetNumberToGuess())
+        if (guess < _randomNumber.GetNumber())
         {
             return "The number is higher";
         }
-        else if (guess > _randomNumber.GetNumberToGuess())
+        else if (guess > _randomNumber.GetNumber())
         {
             return "The number is lower";
         }
@@ -30,13 +30,13 @@ public class RandomNumberGameControl
     public string Guess(int guess)
     {
         if (attempts == limit) throw new Exception("You are out of guesses");
+        attempts++;
 
-        if (_randomNumber.IsNumberToGuess(guess))
+        if (_randomNumber.IsNumber(guess))
         {
             return "Correct!";
         }
-        attempts++;
-
+       
         return Hint(guess);
     }
 }

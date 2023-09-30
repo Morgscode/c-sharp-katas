@@ -2,13 +2,13 @@
 
 public class RandomNumber
 {
-    private readonly int NumberToGuess;
-    private Random _random;
+    private readonly int Number;
+    private readonly Random _random;
 
     public RandomNumber()
     {
         _random = new Random();
-        NumberToGuess = GenerateRandomNumber();
+        Number = GenerateRandomNumber();
     }
 
     private int GenerateRandomNumber()
@@ -16,13 +16,13 @@ public class RandomNumber
         return _random.Next(1, 11);
     }
 
-    public int GetNumberToGuess()
+    public int GetNumber()
     {
-        return NumberToGuess;
+        return Number;
     }
 
-    public bool IsNumberToGuess(int guess)
+    public bool IsNumber(int guess)
     {
-        return guess == NumberToGuess;
+        return guess == Number;
     }
 }

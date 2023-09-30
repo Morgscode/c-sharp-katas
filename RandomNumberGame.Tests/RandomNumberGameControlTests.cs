@@ -44,7 +44,6 @@ public class RandomNumberGameControlTests
 
         // Assert
         Assert.Contains(result, hints);
-       
     }
 
     [Fact]

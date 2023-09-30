@@ -11,7 +11,7 @@ public class RandomNumberTests
         RandomNumber randomNumberGame = new RandomNumber();
 
         // Act
-        int result = randomNumberGame.GetNumberToGuess();
+        int result = randomNumberGame.GetNumber();
 
         // Assert
         Assert.IsType<int>(result);
@@ -24,7 +24,7 @@ public class RandomNumberTests
         RandomNumber randomNumberGame = new RandomNumber();
 
         // Act
-        bool result = randomNumberGame.IsNumberToGuess(2);
+        bool result = randomNumberGame.IsNumber(2);
 
         // Assert
         Assert.IsType<bool>(result);
