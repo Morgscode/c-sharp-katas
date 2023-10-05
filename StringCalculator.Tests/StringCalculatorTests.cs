@@ -62,6 +62,7 @@ public class StringCalculatorTests
     [InlineData("jkjskjskjsksj")]
     [InlineData("1,jkjskjskjsksj")]
     [InlineData("1,jkjskjskjsksj,3")]
+    [InlineData("1,1,1")]
     public void ThrowsForInvalidInputs(string input)
     {
         // Arrange

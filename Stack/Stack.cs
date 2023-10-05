@@ -60,7 +60,6 @@ public struct XStack
     {
         return Size == 0 ? true : false;
     }
-
 }
 
 
