@@ -31,6 +31,7 @@ public class BlogPostToolsTests
     [InlineData("This is a simple sentence.", 5)]
     [InlineData("I am learning how to write unit tests in C#.", 10)]
     [InlineData("Wait, what?", 2)]
+    [InlineData("Wait, ! what?", 2)]
     [InlineData("No, I don't think so...", 5)]
     [InlineData("This is line one.\nThis is line two.", 8)]
     [InlineData("Spaces    between     words.", 3)]
